@@ -42,15 +42,10 @@ export default function App() {
       .fetchApi(inputText)
       .then((data) => {
         setImages(data.hits);
-        // setPage((prevState) => prevState + 1);
       })
       .catch((error) => setError(error.message))
       .finally(() => {
         setLoading(false);
-        window.scrollTo({
-          top: document.documentElement.scrollHeight,
-          behavior: "smooth",
-        });
       });
   }, [inputText]);
 
@@ -68,7 +63,6 @@ export default function App() {
         window.scrollTo({
           top: document.documentElement.scrollHeight,
           behavior: "smooth",
-          // document.addEventListener("keydown", escFunction)
         });
       });
   };
@@ -90,6 +84,7 @@ export default function App() {
 
   return (
     <div className="App">
+      <h1>Поиск изображений на https://pixabay.com/</h1>
       <Searchbar onSubmit={setInputText} images={images} loading={loading} />
       {error && <h1>{error.message}</h1>}
       {loading && <ComponentLoader />}
